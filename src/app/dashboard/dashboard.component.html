@@ -1,0 +1,196 @@
+<input type="checkbox" id="menu-toggle">
+<div class="sidebar">
+    <div class="side-header">
+        <i class="fa-regular fa-circle active" style="font-size: 32px;
+        color: red;"></i>
+    </div>
+
+    <div class="side-content">
+        <div class="profile">
+            <!-- <div class="profile-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+            <!-- <h4>David Green</h4> -->
+            <small><i class="fa fa-th-large" aria-hidden="true" style="font-size:32px;"></i></small>
+
+        </div>
+
+        <div class="side-menu">
+            <ul>
+                <li>
+                    <a href="">
+                        <span><i class="fa fa-credit-card-alt" aria-hidden="true"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span><i class="fa fa-pie-chart" aria-hidden="true"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span><i class="fa fa-commenting-o" aria-hidden="true"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span><i class="fa fa-spotify" aria-hidden="true"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span><i class="fa fa-plus-square-o" aria-hidden="true"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="main-content">
+
+    <header>
+        <div class="header-content" style="display:flex;margin-top:20px;color:white;">
+            <div>
+                <p>31 MAY 2023</p>
+            </div>
+            <div>
+                <input placeholder="search" style="border-radius:10px; height:28px;padding-left:22px;" />
+                <i class="fa fa-search" aria-hidden="true" style="position:relative;right:215px;color: gainsboro;"></i>
+            </div>
+            <div>
+                <div style="display: flex; gap:10px;">
+                    <i class="fa fa-moon-o" aria-hidden="true"></i>
+                    <i class="fa fa-microphone" aria-hidden="true"></i>
+                    <i class="fa fa-bell-o" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div style="display:flex; gap:5px;">
+                <span>Designer</span>
+                <span><i class="fa fa-sort-desc" aria-hidden="true"></i></span>
+            </div>
+        </div>
+    </header>
+
+
+    <main>
+        <div class="page-content">
+
+            <div class="row" style="display: flex; justify-content: space-around;">
+
+                <div class="col-md-7">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-content">
+                            <div>
+                                <h1>Corona Updates</h1>
+                            </div>
+                            <div>
+                                <div style="display: flex;justify-content: space-between;">
+                                    <div style="display: flex;flex-direction: column;">
+                                        <span>Total case</span>
+                                        <span>{{ this.wordwide?.total_cases}}</span>
+                                    </div>
+                                    <div style="display: flex;flex-direction: column;">
+                                        <span>New Cases per hour</span>
+                                        <span>{{ this.wordwide?.new_cases}}</span>
+                                    </div>
+                                    <div style="display: flex;flex-direction: column;">
+                                        <span>Total Deaths</span>
+                                        <span>{{this.wordwide?.total_deaths}}</span>
+                                    </div>
+                                    <div style="display: flex;flex-direction: column;">
+                                        <span>total recovered</span>
+                                        <span>{{this.wordwide?.total_recovered}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="records table-responsive" style="background: transparent; color:white;">
+                        <div>
+                            <table width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>S.no</th>
+                                        <th><span class="las la-sort "></span> Country</th>
+                                        <th><span class="las la-sort "></span>Active Cases</th>
+                                        <th><span class="las la-sort "></span>Serious Critical</th>
+                                        <th><span class="las la-sort "></span>Total Deaths</th>
+                                        <th><span class="las la-sort "></span>total recovered</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of countrywise_data;let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <div class="client ">
+                                                <div class="client-info ">
+                                                    <h4>{{item.country_name}}</h4>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="client-info ">
+
+                                                <small>{{item.active_cases}}</small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="client-info ">
+
+                                                <small>{{item.serious_critical
+                                                }}</small>
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="client-info ">
+
+                                                <small>{{item.deaths}}</small>
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="client-info ">
+
+                                                <small>{{item.total_recovered}}</small>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 ">
+                    <div class="card " style="width: 100%; ">
+
+                        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels" [responsive]="chartOptions.responsive"></apx-chart>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    </main>
+
+</div>
